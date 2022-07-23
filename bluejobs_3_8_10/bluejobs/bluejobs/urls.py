@@ -15,21 +15,19 @@ Including another URLconf
 """
 from re import template
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.contrib.auth import views
 
 
 from apps.userprofile.views import dashboard
 from apps.core.views import frontpage, signup
-from apps.job.views import job_detail
 
 urlpatterns = [
     path('',frontpage, name='frontpage'),
     path('admin/', admin.site.urls),
-    path('dashboard/', dashboard, name='dashboard'),
+    path('dashboard/', include('apps.userprofile.urls')),
     path('signup/', signup, name='signup'),
     path('logout/',views.LogoutView.as_view() , name='logout'),
     path('login/', views.LoginView.as_view(template_name='core/login.html'), name='login'),
-    path('jobs/<int:job_id>/', job_detail, name = 'job_detail'),
-
+    path('jobs/', include('apps.job.urls')),
 ]
