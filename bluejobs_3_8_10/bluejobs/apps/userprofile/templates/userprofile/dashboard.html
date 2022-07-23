@@ -1,0 +1,11 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+    <h1 class="title">Dashboard</h1>
+
+    {% if userprofile.is_employer %}
+        <h1>Is employer</h1>
+    {% else %}
+            <p>IS Job Seeker</p>
+    {% endif %}
+{% endblock %}
