@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import AddJobForm, ApplicationForm
 from .models import Job
 
+from apps.notification.utilities import create_notification
 
 def search(request):
     return render(request, 'job/search.html')
@@ -26,7 +27,7 @@ def apply_for_job(request, job_id):
             application.created_by = request.user
             application.save()
 
-            # create_notification(request, job.created_by, 'application', extra_id=application.id)
+            create_notification(request, job.created_by, 'application', extra_id=application.id)
 
             return redirect('dashboard')
     else:
