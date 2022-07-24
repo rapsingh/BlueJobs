@@ -18,8 +18,6 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views
 
-
-from apps.userprofile.views import dashboard
 from apps.core.views import frontpage, signup
 
 urlpatterns = [
